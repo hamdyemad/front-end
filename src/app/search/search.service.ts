@@ -16,15 +16,18 @@ export class searchService {
   private booksUpdated = new Subject();
   private booksSearched = new Subject();
 
+  searchedBooks: any;
+  ordinaryBooks: any;
+
   constructor(private http: HttpClient, private router: Router) { }
 
 
 
 
 
-// for the advanced search
-  searchBooks(title,book,reviewer,publisher) {
-    console.log(title,book,reviewer,publisher)
+  // for the advanced search
+  searchBooks(title, book, reviewer, publisher) {
+    console.log(title, book, reviewer, publisher)
     const query = `${title}*${book}*${reviewer}*${publisher}`;
     this.http.get<{ message: string; searchedBooks: any }>(BACKEND_URL + query)
       .pipe(map(bookData => {
@@ -32,23 +35,37 @@ export class searchService {
           books: bookData.searchedBooks.map(book => {
             console.log(book)
             return {
-              title: book.title,
-              book: book._source.book,
+              id: book._id,
+              type: book._source.type,
+              title: book._source.title,
+              author: book._source.author,
               reviewer: book._source.reviewer,
-              publisher: book._source.publisher
-             
+              publishers: book._source.publishers,
+              publicationDate: book._source.publicationDate,
+              publicationCountry: book._source.publicationCountry,
+              publicationCity: book._source.publicationCity,
+              edition: book._source.edition,
+              parts: book._source.parts,
+              papers: book._source.papers,
+              file: book._source.file,
+              category: book._source.category,
+              subCategory: book._source.subCategory,
+              subject: book._source.subject,
+              comments: book._source.comments,
+              coverImage: book._source.coverImage,
+              sound: book._source.sound,
+
             };
           }),
         };
       })
       )
       .subscribe(transformedbookData => {
-        console.log(transformedbookData)
-        
+        this.searchedBooks = transformedbookData;
       });
   }
 
-// for the main  search
+  // for the main  search
   ordinarysearch(searchTerm) {
     console.log("searchTerm", searchTerm);
     this.http.get<{ message: string; searchedBooks: any }>(BACKEND_URL + `searchterm/${searchTerm}`)
@@ -66,10 +83,10 @@ export class searchService {
               publicationDate: book._source.publicationDate,
               publicationCountry: book._source.publicationCountry,
               publicationCity: book._source.publicationCity,
-              edition:book._source.edition,
+              edition: book._source.edition,
               parts: book._source.parts,
               papers: book._source.papers,
-              file:book._source.file,
+              file: book._source.file,
               category: book._source.category,
               subCategory: book._source.subCategory,
               subject: book._source.subject,
@@ -82,7 +99,8 @@ export class searchService {
       })
       )
       .subscribe(transformedbookData => {
-        console.log(transformedbookData)
+        console.log(transformedbookData);
+        this.ordinaryBooks = transformedbookData;
         // this.books = transformedbookData.books;
         // this.booksUpdated.next({
         //   books: [...this.books]
@@ -132,21 +150,21 @@ export class searchService {
 
 
 
-// searchMe(title,book,reviewer,publisher){
-//   console.log(title,book,reviewer,publisher)
-//  const postData = {
-//     title: title,
-//     book: book,
-//     reviewer: reviewer,
-//     publisher: publisher
-//   };
-//   this.http.post(
-//     BACKEND_URL,
-//     postData
-//     ).subscribe(responseData => {
-//       console.log(responseData)
-//     });
-// }
+  // searchMe(title,book,reviewer,publisher){
+  //   console.log(title,book,reviewer,publisher)
+  //  const postData = {
+  //     title: title,
+  //     book: book,
+  //     reviewer: reviewer,
+  //     publisher: publisher
+  //   };
+  //   this.http.post(
+  //     BACKEND_URL,
+  //     postData
+  //     ).subscribe(responseData => {
+  //       console.log(responseData)
+  //     });
+  // }
 
   // getbookUpdateListener() {
   //   return this.booksUpdated.asObservable();

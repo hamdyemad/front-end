@@ -83,10 +83,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     })
 
     this.form = new FormGroup({
-      title: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
-      book: new FormControl(null, { validators: [Validators.required] }),
-      reviewer: new FormControl(null, {validators: [Validators.required]}),
-      publisher: new FormControl(null, {validators: [Validators.required]})
+      title: new FormControl(null),
+      book: new FormControl(null),
+      reviewer: new FormControl(null),
+      publisher: new FormControl(null)
     });
   }
 
@@ -132,11 +132,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
 
   filter(searchTerm) {
+
+    this.router.navigate(['/search']);
     console.log(searchTerm);
     this.searchService.ordinarysearch(searchTerm)
   }
-  
+
   onSearch() {
+    this.router.navigate(['/search']);
     this.searchService.searchBooks(
       this.form.value.title,
       this.form.value.book,

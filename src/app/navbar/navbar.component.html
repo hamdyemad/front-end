@@ -22,31 +22,31 @@
             بحث متقدم
             <div class="about-over" #aboutOver>
               <form [formGroup]="form" (submit)="onSearch()">
-                <li class="form-group">
-                  <label>ابحث بأسم المؤلف</label>
-                  <input class="form-control"  type="text" formControlName="title">
-                </li>
+        <li class="form-group">
+          <label>ابحث بأسم المؤلف</label>
+          <input class="form-control" type="text" formControlName="title">
+        </li>
 
-                <li class="form-group">
-                  <label>ابحث بأسم الكتاب</label>
-                  <input class="form-control"  type="text" formControlName="book">
-                </li>
+        <li class="form-group">
+          <label>ابحث بأسم الكتاب</label>
+          <input class="form-control" type="text" formControlName="book">
+        </li>
 
-                <li class="form-group">
-                  <label>ابحث بأسم المحقق</label>
-                  <input class="form-control"  type="text" formControlName="reviewer">
-                </li>
+        <li class="form-group">
+          <label>ابحث بأسم المحقق</label>
+          <input class="form-control" type="text" formControlName="reviewer">
+        </li>
 
-                <li class="form-group">
-                  <label>ابحث بأسم دار النشر</label>
-                  <input class="form-control"  type="text" formControlName="publisher">
-                </li>
+        <li class="form-group">
+          <label>ابحث بأسم دار النشر</label>
+          <input class="form-control" type="text" formControlName="publisher">
+        </li>
 
-                
-                
-                <button mat-raised-button color="accent" type="submit">Search</button>
-              </form>
-              <!-- <ul class="list-unstyled">
+
+
+        <button mat-raised-button color="accent" type="submit">ابحث</button>
+        </form>
+        <!-- <ul class="list-unstyled">
                 <li class="form-group">
                   <label>ابحث بأسم المؤلف</label>
                   <i class="fas fa-search" (click)="filters(inputAuthor.value)"></i>
@@ -68,25 +68,24 @@
                   <input class="form-control" type="text" #inputpublishers (keyup.enter)="filters($event)">
                 </li>
               </ul> -->
-            </div>
-          </a>
-        </li>
-        <li class="nav-item" routerLink="/books-list" routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{exact: true}" (click)="toggleNav(burger, navbarCollapse)">
-          <a class="nav-link">الكتب</a>
-        </li>
-        <li class="nav-item" routerLink="admin" routerLinkActive="active-link"
-          (click)="toggleNav(burger, navbarCollapse)">
-          <a class="nav-link" *ngIf="userIsAuthenticated">لوحة التحكم</a>
-        </li>
-        <li class="nav-item" routerLink="auth/login" routerLinkActive="active-link"
-          (click)="toggleNav(burger, navbarCollapse)">
-          <a class="nav-link" *ngIf="!userIsAuthenticated">الدخول</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active-link" (click)="onLogout()" *ngIf="userIsAuthenticated">
-          <a class="nav-link">الخروج</a>
-        </li>
-      </ul>
     </div>
+    </a>
+    </li>
+    <li class="nav-item" routerLink="/books-list" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{exact: true}" (click)="toggleNav(burger, navbarCollapse)">
+      <a class="nav-link">الكتب</a>
+    </li>
+    <li class="nav-item" routerLink="admin" routerLinkActive="active-link" (click)="toggleNav(burger, navbarCollapse)">
+      <a class="nav-link" *ngIf="userIsAuthenticated">لوحة التحكم</a>
+    </li>
+    <li class="nav-item" routerLink="auth/login" routerLinkActive="active-link"
+      (click)="toggleNav(burger, navbarCollapse)">
+      <a class="nav-link" *ngIf="!userIsAuthenticated">الدخول</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active-link" (click)="onLogout()" *ngIf="userIsAuthenticated">
+      <a class="nav-link">الخروج</a>
+    </li>
+    </ul>
+  </div>
   </div>
 </nav>
